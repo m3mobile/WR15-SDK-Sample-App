@@ -57,7 +57,7 @@ class SearchViewModel : ViewModel() {
                 BtDeviceManager.initialize(transportSession)
                 navigateToNextScreen(Routes.HOME_SCREEN)
             },
-            onFailure = {
+            onFailure = { code, msg ->
                 Log.i("WR15 Sample", "Failed to connect to device: ${btDevice.address}")
                 _uiState.update { it.copy(isLoading = false) }
                 // handle failure
@@ -78,7 +78,7 @@ class SearchViewModel : ViewModel() {
         autoRestart = true
         scanJob = viewModelScope.launch {
             while (isActive && autoRestart) {
-                M3Wr15Sdk.startDiscoveryScan(object:DiscoveryScanResultListener {
+                M3Wr15Sdk.startDiscoveryScan(object : DiscoveryScanResultListener {
                     override fun onDeviceFound(device: DiscoveryDeviceModel) {
                         _uiState.update { state ->
                             val new = device.btDevice

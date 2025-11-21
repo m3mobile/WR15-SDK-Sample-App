@@ -6,7 +6,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import com.m3.wr15.sample.presentation.navigation.Routes
 
@@ -21,11 +20,10 @@ fun HomeScreen(innerPadding: PaddingValues, navHostController: NavHostController
                     navHostController.navigate(event.route)
                 }
 
-                is HomeEvent.NavigateToHome -> {
+                is HomeEvent.NavigateToMain -> {
                     navHostController.navigate(Routes.MAIN_SCREEN) {
-                        popUpTo(navHostController.graph.findStartDestination().id) { inclusive = false }
+                        popUpTo(0) { inclusive = true }
                         launchSingleTop = true
-                        restoreState = false
                     }
                 }
             }

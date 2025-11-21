@@ -37,7 +37,7 @@ android {
 }
 
 dependencies {
-    implementation("com.m3:wr15-sdk:1.2.0")
+    implementation("com.m3:wr15-sdk:1.3.0")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

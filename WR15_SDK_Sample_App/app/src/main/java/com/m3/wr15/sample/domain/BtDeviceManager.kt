@@ -1,7 +1,6 @@
 package com.m3.wr15.sample.domain
 
 import com.m3.wr15.sdk.api.M3Utils
-import com.m3.wr15.sdk.api.M3Wr15Sdk
 import com.m3.wr15.sdk.api.SettingCommand
 import com.m3.wr15.sdk.api.TransportSession
 import com.m3.wr15.sdk.api.listener.DecodingDataListener
@@ -70,7 +69,7 @@ object BtDeviceManager {
     fun disconnect() {
         transportSession?.disconnect(
             onSuccess = { dispose() },
-            onFailure = { /* disconnect fail */}
+            onFailure = { /* disconnect fail */ }
         )
     }
 
@@ -81,7 +80,7 @@ object BtDeviceManager {
                 // handle success
                 // if you are observing device state, you will get updated state via listener
             },
-            onFailure = {
+            onFailure = { _, _ ->
                 // handle failure
             }
         )

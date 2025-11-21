@@ -62,7 +62,7 @@ class S2PViewModel : ViewModel() {
                     BtDeviceManager.initialize(transportSession)
                     navigateToNextScreen(Routes.HOME_SCREEN)
                 },
-                onFailure = {
+                onFailure = { code, msg ->
                     _uiState.update { it.copy(isLoading = false) }
                     // Error handling
                     startS2PScan()

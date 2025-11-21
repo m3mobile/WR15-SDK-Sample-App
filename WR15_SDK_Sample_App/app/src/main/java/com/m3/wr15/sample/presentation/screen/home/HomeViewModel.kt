@@ -40,9 +40,9 @@ class HomeViewModel : ViewModel() {
             .onEach { deviceState ->
                 _uiState.update {
                     it.copy(
-                        deviceName = deviceState.deviceInfo.name,
-                        deviceMac = deviceState.deviceInfo.macAddress,
-                        deviceSerialNum = deviceState.deviceInfo.serialNumber,
+                        deviceName = deviceState.deviceInfo.name.orEmpty(),
+                        deviceMac = deviceState.deviceInfo.macAddress.orEmpty(),
+                        deviceSerialNum = deviceState.deviceInfo.serialNumber.orEmpty(),
                         battery = deviceState.deviceInfo.batteryPercent
                     )
                 }
@@ -62,7 +62,7 @@ class HomeViewModel : ViewModel() {
         BtDeviceManager.isConnected
             .onEach { isConnected ->
                 if (!isConnected) {
-                    _event.emit(HomeEvent.NavigateToHome)
+                    _event.emit(HomeEvent.NavigateToMain)
                     resetState()
                 }
             }

@@ -106,12 +106,12 @@ fun ConfigureView(innerPadding: PaddingValues, uiState: ConfigureUiState, onInte
             // Prefix
             SettingView(
                 title = "Prefix",
-                value = uiState.deviceState.basicFormat.prefix,
+                value = uiState.deviceState.basicFormat.prefix.orEmpty(),
                 onClick = {
                     onIntent(
                         ConfigureIntent.ShowStrTextFieldDialog(
                             title = "Prefix",
-                            currentValue = uiState.deviceState.basicFormat.prefix,
+                            currentValue = uiState.deviceState.basicFormat.prefix.orEmpty(),
                             onConfirm = { value ->
                                 onIntent(ConfigureIntent.ChangeSetting(Settings.BasicDataFormat.setPrefix(value)))
                             },
@@ -126,12 +126,12 @@ fun ConfigureView(innerPadding: PaddingValues, uiState: ConfigureUiState, onInte
             // Postfix
             SettingView(
                 title = "Postfix",
-                value = uiState.deviceState.basicFormat.postfix,
+                value = uiState.deviceState.basicFormat.postfix.orEmpty(),
                 onClick = {
                     onIntent(
                         ConfigureIntent.ShowStrTextFieldDialog(
                             title = "Postfix",
-                            currentValue = uiState.deviceState.basicFormat.postfix,
+                            currentValue = uiState.deviceState.basicFormat.postfix.orEmpty(),
                             onConfirm = { value ->
                                 onIntent(ConfigureIntent.ChangeSetting(Settings.BasicDataFormat.setPostfix(value)))
                             },
@@ -181,17 +181,17 @@ fun ConfigureView(innerPadding: PaddingValues, uiState: ConfigureUiState, onInte
                 ) {
                     onIntent(
                         ConfigureIntent.ShowIntTextFieldDialog(
-                        title = "Laser On Time(1~10S)",
-                        currentValue = uiState.deviceState.readerSettings.laserOnTime!!.div(10),
-                        onConfirm = { value ->
-                            onIntent(
-                                ConfigureIntent.ChangeSetting(Settings.ReaderParams.setLaserOnTime(value * 10))
-                            )
-                        },
-                        onDismiss = {
-                            onIntent(ConfigureIntent.HideIntTextFieldDialog)
-                        }
-                    ))
+                            title = "Laser On Time(1~10S)",
+                            currentValue = uiState.deviceState.readerSettings.laserOnTime!!.div(10),
+                            onConfirm = { value ->
+                                onIntent(
+                                    ConfigureIntent.ChangeSetting(Settings.ReaderParams.setLaserOnTime(value * 10))
+                                )
+                            },
+                            onDismiss = {
+                                onIntent(ConfigureIntent.HideIntTextFieldDialog)
+                            }
+                        ))
                 }
             }
         }
